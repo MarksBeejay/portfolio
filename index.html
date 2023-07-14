@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backend Developer Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/yourcode.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="menu-icon">
+          <div class="menu-icon-bar"><i class="fas fa-bars"></i></div>
+        </div>
+        <ul class="nav-list">
+          <li class="navbar-item">
+            <a href="/">
+              <i class="fa fa-cogs"></i>
+            </a>
+          </li>
+
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="about" class="centered-section">
+        <h1 class="bold-text">Hi, I'm Makanjuola Bolaji</h1>
+        <p style="font-size: 18px">
+          Welcome to my portfolio website. I'm a backend developer with a
+          passion for creating robust and scalable web applications.
+        </p>
+      </section>
+
+      <div>
+        <img id="avatar" src="images/mf-avatar (1).svg" alt="avatar" />
+        <img id="hero" src="images/hero-devices.svg" alt="hero" />
+      </div>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+          <li class="email-link">
+            <i class="fa fa-wrench"></i>Backend Development
+          </li>
+          <li class="email-link">
+            <i class="fas fa-database"></i>Database Design
+          </li>
+          <li class="email-link">
+            <i class="fa fa-recycle"></i>API Development
+          </li>
+          <li class="email-link">
+            <i class="fa fa-server"></i>Server Management
+          </li>
+        </ul>
+      </section>
+      <div>
+        <h2 class="section-heading">My Projects</h2>
+        <p style="text-align: center; font-size: 18px">
+          Here are a few past projects I've worked on. Want to see more?
+          <a href="mailto:makanjuolabolaji9898@gmail.com">Email me</a>.
+        </p>
+        <p style="text-align: center; font-size: 18px">
+          You can also visit my github repository
+          <a href="https://github.com/MarksBeejay">here</a> for more of my
+          projects.
+        </p>
+      </div>
+      <section id="projects">
+        <article id="madam">
+          <h3>MADAM</h3>
+          <p>
+            This project involved developing a RESTful API for a food and drink
+            ordering mobile application, using Node.js and Express.
+          </p>
+          <p>
+            <a
+              href="https://github.com/cappa-team2/madam-food-app-backend/tree/dev"
+              >View Project</a
+            >
+          </p>
+        </article>
+        <article id="udemyclone">
+          <!-- <img class="udemy" src="images/bj.jpg" alt="udemy" /> -->
+          <h3>UDEMY</h3>
+          <p>
+            In this project, I replicated the landing page of popular learning
+            platform <strong>Udemy</strong>. It was developed using HTML and CSS
+            resulting in a user interface that closely resembles the original
+            Udemy platform.
+          </p>
+          <p>
+            <a href="https://udemyclonebymakanjuolabolaji.netlify.app"
+              >View Project</a
+            >
+          </p>
+        </article>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form" action="#" method="post">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+
+          <input id="submit" type="submit" value="Send Message" />
+        </form>
+      </section>
+    </main>
+    <div class="connect-with-me">
+      <img src="images/bj.jpg" alt="Your Profile Picture" />
+      <h3>Connect with Me</h3>
+      <ul>
+        <li>
+          <a href="https://www.linkedin.com/in/makanjuola-bolaji">LinkedIn</a>
+        </li>
+        <li><a href="https://github.com/MarksBeejay">Github</a></li>
+
+        <li>
+          <a href="mailto:makanjuolabolaji9898@gmail.com" class="email-link"
+            ><i class="fas fa-envelope"></i>Email</a
+          >
+        </li>
+      </ul>
+    </div>
+    <footer>
+      <p>&copy; 2023 [Your Name]. All rights reserved.</p>
+    </footer>
+
+    <button class="btn">Say Goodbye</button>
+    <script src="script.js"></script>
+  </body>
+</html>
