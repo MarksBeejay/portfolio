@@ -21,12 +21,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Define your routes here
 app.use('/portfolio', form)
 
-app.use((req, res, next)=>{
-    const err = new Error('not found');
-    err.status = 404;
-    err.message = 'route not found';
-    next(err)
-  });
+// app.use((req, res, next)=>{
+//     const err = new Error('not found');
+//     err.status = 404;
+//     err.message = 'route not found';
+//     next(err)
+//   });
 
 
 // Start the server
