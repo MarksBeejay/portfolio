@@ -1,3 +1,7 @@
+/* :root {
+  --body-background-color: #a8a8a8;
+} */
+
 /* Adjust box-sizing for all elements */
 * {
     box-sizing: border-box;
@@ -16,6 +20,7 @@
     margin: 0;
     padding: 0;
     background-color: #f8f8f8;
+    /* background-color: var(--body-background-color); */
     font-size: 16px;
   }
   @media (max-width: 768px) {
@@ -177,16 +182,21 @@ nav {
   
   /* Skills section styles */
   #skills {
-    background-color: #7a00d2;
+    /* width: 90%; */
+    /* background-color: #7a00d2; */
+    background: linear-gradient(#7a00d2 50%, #ffffff 50%);
+    /* background: linear-gradient(#7a00d2 50%, var(--body-background-color) 50%); */
     padding: 10px;
     text-align: center;
-    height: auto; /* Remove the fixed height */
-  max-height: 270px; 
+    height: auto;
+    /* max-height: 270px;  */
     color: #fff;
     border-radius: 5px;
-    margin-left: -40px;
-    margin-right: -40px;
-    overflow: visible; /* Set overflow to visible */
+    /* margin-left: -40px;
+    margin-right: -40px; */
+    margin: 0 auto;
+    overflow: visible; 
+    /* overflow: hidden; */
     position: relative; /* Add position relative */
   z-index: 1; /* Set a higher z-index to position the skills section above other elements */
   }
@@ -195,7 +205,7 @@ nav {
     font-size: 50px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-top: 0;
-    background-color: #7a00d2;
+    /* background-color: #7a00d2; */
     color: #fff;
     padding: 10px;
   }
@@ -230,7 +240,7 @@ nav {
 
   #skills li i {
     position: absolute;
-    top: 60px;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 30px;
@@ -239,6 +249,14 @@ nav {
   padding: 20px;
   border-radius: 50%;
   }
+  /* #skills li:nth-child(odd) {
+    transform: translateY(-100px);
+  }
+  
+  #skills li:nth-child(even) {
+    transform: translateY(20px);
+  } */
+  
   
   @media (max-width: 768px) {
     #skills {
@@ -278,7 +296,7 @@ nav {
   
 /* Projects section styles */
 #projects {
-  margin-top: 100px;
+  /* margin-top: 100px; */
   background-color: #ffffff;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -293,7 +311,7 @@ nav {
   font-size: 30px;
   font-weight: bold;
   color: #0b0b0b;
-  margin-top: 300px;
+  margin-top: 100px;
   margin-bottom: 30px;
   position: relative; /* Add position relative */
   z-index: 3; 
