@@ -3,7 +3,7 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const Joi = require('joi');
 
-const { Form } = require('../models/form');
+// const { Form } = require('../models/form');
 
 // Define the email transport configuration for Nodemailer
 const transporter = nodemailer.createTransport({
@@ -32,8 +32,8 @@ router.post('/contact', async (req, res) => {
     }
 
     // Save the form data to the database (optional)
-    const form = new Form(req.body);
-    await form.save();
+    // const form = new Form(req.body);
+    // await form.save();
 
     // Send the email
     transporter.sendMail({
@@ -45,8 +45,7 @@ router.post('/contact', async (req, res) => {
 
     res.status(201).json({
       status: true,
-      message: 'Thank you for your message',
-      data: form,
+      message: 'Thank you for your message'
     });
   } catch (error) {
     console.error(error);

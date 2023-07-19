@@ -121,3 +121,37 @@ fetch(url)
     .catch(error => {
         console.error('Error:', error);
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const contactForm = document.getElementById("submit");
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // Update the API endpoint URL
+            const apiUrl = 'https://portfolio-3j5t.onrender.com';
+
+            fetch(`${apiUrl}/send-email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())
+            .then(message => {
+                alert(message);
+                contactForm.reset();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("An error occurred while sending the message.");
+            });
+        });
+    });
+    
+
+    
