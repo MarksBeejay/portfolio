@@ -27,7 +27,9 @@ app.use('/portfolio', form)
 //     err.message = 'route not found';
 //     next(err)
 //   });
-
+app.get('/', (req, res) => {
+  res.send('https://makanjuolabolaji.netlify.app/');
+});
 
 // Start the server
 app.listen(port, () => {
