@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Update the API endpoint URL
       const apiUrl = "https://portfolio-3j5t.onrender.com";
 
-      fetch(`${apiUrl}/portfolio/contact`, {
+      fetch(`${apiUrl}/send-mail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
