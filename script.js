@@ -17,8 +17,6 @@ menuIcon.addEventListener('click', () => {
 });
 
 
-// JavaScript interactions and functionality
-
 // Example: Changing the text of an element
 const heading = document.querySelector('h1');
 heading.textContent = `Hi, I'm Makanjuola Bolaji`;
@@ -33,81 +31,123 @@ button.addEventListener('click', function () {
 });
 
 
+// Form handling and validation
 
-    // document.addEventListener("DOMContentLoaded", function() {
-    //     const contactForm = document.getElementById("submit");
+const form = document.getElementById('contact-form');
 
-    //     contactForm.addEventListener("submit", function(event) {
-    //         event.preventDefault();
-    
-    //         const formData = new FormData(contactForm);
-    //         const data = Object.fromEntries(formData.entries());
+form.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent default form submission
 
-    //         // Update the API endpoint URL
-    //         const apiUrl = 'https://portfolio-3j5t.onrender.com';
+    // Get form input values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
 
-    //         fetch(`${apiUrl}/send-email`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(data),
-    //         })
-    //         .then(response => response.text())
-    //         .then(message => {
-    //             alert(message);
-    //             contactForm.reset();
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //             alert("An error occurred while sending the message.");
-    //         });
-    //     });
-    // });
-    
+    // Perform validation
+    let isValid = true;
 
-    function sendFormData(name, email, message) {
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('message', message);
-    
-        // Make a POST request to the backend API
-        fetch('https://portfolio-3j5t.onrender.com/contact', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response from the backend API (optional)
-            console.log(data);
-            if (data.success) {
-                // If the email was sent successfully, show a success message or perform any other action you want
-                alert('Your message has been sent successfully!');
-            } else {
-                // If there was an error with sending the email, show an error message or perform any other error handling
-                alert('Error sending the message. Please try again later.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Handle any network or server errors here
-        });
+    if (name.trim() === '') {
+        isValid = false;
+        displayErrorMessage('name', 'Name is required');
+    } else {
+        removeErrorMessage('name');
     }
-    const form = document.getElementById('contact-form');
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
-    
-        // Get form input values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-    
-        // Perform validation (if needed)
-    
-        // If form is valid, submit data
-        sendFormData(name, email, message);
+    if (email.trim() === '') {
+        isValid = false;
+        displayErrorMessage('email', 'Email is required');
+    } else if (!isValidEmail(email)) {
+        isValid = false;
+        displayErrorMessage('email', 'Invalid email format');
+    } else {
+        removeErrorMessage('email');
+    }
+
+    if (message.trim() === '') {
+        isValid = false;
+        displayErrorMessage('message', 'Message is required');
+    } else {
+        removeErrorMessage('message');
+    }
+
+    // If form is valid, submit data
+    if (isValid) {
+        // Perform form submission or AJAX request here
+        alert('Thank you for your message!')
+        console.log('Form submitted successfully');
+        form.reset(); // Reset form fields
+    }
+});
+
+function displayErrorMessage(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorElement = document.createElement('p');
+    errorElement.className = 'error-message';
+    errorElement.textContent = message;
+
+    const parentElement = field.parentElement;
+    parentElement.appendChild(errorElement);
+}
+
+function removeErrorMessage(fieldId) {
+    const field = document.getElementById(fieldId);
+    const parentElement = field.parentElement;
+    const errorElement = parentElement.querySelector('.error-message');
+
+    if (errorElement) {
+        parentElement.removeChild(errorElement);
+    }
+}
+
+function isValidEmail(email) {
+    // Basic email format validation using a regular expression
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+
+// Example: Using AJAX to fetch data from a server
+const url = 'https://api.example.com/data';
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        // Process the retrieved data
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
-        
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const contactForm = document.getElementById("submit");
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // Update the API endpoint URL
+            const apiUrl = 'https://portfolio-3j5t.onrender.com';
+
+            fetch(`${apiUrl}/send-email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())
+            .then(message => {
+                alert(message);
+                contactForm.reset();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("An error occurred while sending the message.");
+            });
+        });
+    });
+    
+
     
