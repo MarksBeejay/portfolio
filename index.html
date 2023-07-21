@@ -130,7 +130,7 @@
 
       <section id="contact">
         <h2>Contact Me</h2>
-        <form id="contact-form" action="/send-mail" method="post">
+        <form id="contact-form" action="/portfolio/contact" method="post">
           <label for="name">Name:</label>
           <input type="text" id="name" name="name" required />
 
@@ -184,7 +184,7 @@
           // Update the API endpoint URL
           const apiUrl = "https://portfolio-3j5t.onrender.com";
 
-          fetch(`${apiUrl}/send-mail`, {
+          fetch(`${apiUrl}/portfolio/contact`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
