@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'))
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.urlencoded({ extended: true }))
 app.use('portfolio/contact', cors({
   origin: 'https://makanjuolabolaji.netlify.app/',
   methods: ['GET', 'POST'],
