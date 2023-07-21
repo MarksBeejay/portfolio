@@ -171,38 +171,7 @@
     </footer>
 
     <button class="btn">Say Goodbye</button>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const contactForm = document.getElementById("contact-form");
 
-        contactForm.addEventListener("contact-form", function (event) {
-          event.preventDefault();
-
-          const formData = new FormData(contactForm);
-          const data = Object.fromEntries(formData.entries());
-
-          // Update the API endpoint URL
-          const apiUrl = "https://portfolio-3j5t.onrender.com";
-
-          fetch(`${apiUrl}/portfolio/contact`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          })
-            .then((response) => response.text())
-            .then((message) => {
-              alert(message);
-              contactForm.reset();
-            })
-            .catch((error) => {
-              console.error(error);
-              alert("An error occurred while sending the message.");
-            });
-        });
-      });
-    </script>
     <script src="script.js"></script>
     <script src="app.js"></script>
   </body>

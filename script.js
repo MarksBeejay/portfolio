@@ -33,121 +33,106 @@ button.addEventListener('click', function () {
 
 // Form handling and validation
 
-const form = document.getElementById('contact-form');
+// const form = document.getElementById('contact-form');
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission
+// form.addEventListener('submit', function (event) {
+//     event.preventDefault(); // Prevent default form submission
 
-    // Get form input values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+//     // Get form input values
+//     const name = document.getElementById('name').value;
+//     const email = document.getElementById('email').value;
+//     const message = document.getElementById('message').value;
 
-    // Perform validation
-    let isValid = true;
+//     // Perform validation
+//     let isValid = true;
 
-    if (name.trim() === '') {
-        isValid = false;
-        displayErrorMessage('name', 'Name is required');
-    } else {
-        removeErrorMessage('name');
-    }
+//     if (name.trim() === '') {
+//         isValid = false;
+//         displayErrorMessage('name', 'Name is required');
+//     } else {
+//         removeErrorMessage('name');
+//     }
 
-    if (email.trim() === '') {
-        isValid = false;
-        displayErrorMessage('email', 'Email is required');
-    } else if (!isValidEmail(email)) {
-        isValid = false;
-        displayErrorMessage('email', 'Invalid email format');
-    } else {
-        removeErrorMessage('email');
-    }
+//     if (email.trim() === '') {
+//         isValid = false;
+//         displayErrorMessage('email', 'Email is required');
+//     } else if (!isValidEmail(email)) {
+//         isValid = false;
+//         displayErrorMessage('email', 'Invalid email format');
+//     } else {
+//         removeErrorMessage('email');
+//     }
 
-    if (message.trim() === '') {
-        isValid = false;
-        displayErrorMessage('message', 'Message is required');
-    } else {
-        removeErrorMessage('message');
-    }
+//     if (message.trim() === '') {
+//         isValid = false;
+//         displayErrorMessage('message', 'Message is required');
+//     } else {
+//         removeErrorMessage('message');
+//     }
 
-    // If form is valid, submit data
-    if (isValid) {
-        // Perform form submission or AJAX request here
-        alert('Thank you for your message!')
-        console.log('Form submitted successfully');
-        form.reset(); // Reset form fields
-    }
-});
+//     // If form is valid, submit data
+//     if (isValid) {
+//         // Perform form submission or AJAX request here
+//         alert('Thank you for your message!')
+//         console.log('Form submitted successfully');
+//         form.reset(); // Reset form fields
+//     }
+// });
 
-function displayErrorMessage(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    const errorElement = document.createElement('p');
-    errorElement.className = 'error-message';
-    errorElement.textContent = message;
+// function displayErrorMessage(fieldId, message) {
+//     const field = document.getElementById(fieldId);
+//     const errorElement = document.createElement('p');
+//     errorElement.className = 'error-message';
+//     errorElement.textContent = message;
 
-    const parentElement = field.parentElement;
-    parentElement.appendChild(errorElement);
-}
+//     const parentElement = field.parentElement;
+//     parentElement.appendChild(errorElement);
+// }
 
-function removeErrorMessage(fieldId) {
-    const field = document.getElementById(fieldId);
-    const parentElement = field.parentElement;
-    const errorElement = parentElement.querySelector('.error-message');
+// function removeErrorMessage(fieldId) {
+//     const field = document.getElementById(fieldId);
+//     const parentElement = field.parentElement;
+//     const errorElement = parentElement.querySelector('.error-message');
 
-    if (errorElement) {
-        parentElement.removeChild(errorElement);
-    }
-}
+//     if (errorElement) {
+//         parentElement.removeChild(errorElement);
+//     }
+// }
 
-function isValidEmail(email) {
-    // Basic email format validation using a regular expression
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
+// function isValidEmail(email) {
+//     // Basic email format validation using a regular expression
+//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     return emailPattern.test(email);
+// }
 
 
-// Example: Using AJAX to fetch data from a server
-const url = 'https://api.example.com/data';
-fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        // Process the retrieved data
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contact-form");
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const contactForm = document.getElementById("submit");
+    contactForm.addEventListener("contact-form", function (event) {
+      event.preventDefault();
 
-        contactForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-    
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
 
-            // Update the API endpoint URL
-            const apiUrl = 'https://portfolio-3j5t.onrender.com';
+      // Update the API endpoint URL
+      const apiUrl = "https://portfolio-3j5t.onrender.com";
 
-            fetch(`${apiUrl}/send-email`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.text())
-            .then(message => {
-                alert(message);
-                contactForm.reset();
-            })
-            .catch(error => {
-                console.error(error);
-                alert("An error occurred while sending the message.");
-            });
+      fetch(`${apiUrl}/portfolio/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.text())
+        .then((message) => {
+          alert(message);
+          contactForm.reset();
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while sending the message.");
         });
     });
-    
-
-    
+  });
