@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 // const mongoose = require('mongoose');
 const form = require('./src/routes/forms')
 
@@ -17,6 +18,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors());
 
 // Define your routes here
 app.use('/portfolio', form)
@@ -27,9 +29,9 @@ app.use('/portfolio', form)
 //     err.message = 'route not found';
 //     next(err)
 //   });
-app.get('/', (req, res) => {
-  res.send('https://makanjuolabolaji.netlify.app/');
-});
+// app.get('/', (req, res) => {
+//   res.send('https://makanjuolabolaji.netlify.app/');
+// });
 
 // Start the server
 app.listen(port, () => {
