@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const form = require('./src/routes/forms')
 
@@ -20,11 +20,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-// app.use('portfolio/contact', cors({
-//   origin: 'https://makanjuolabolaji.netlify.app/',
-//   methods: ['GET', 'POST'],
-//   allowedHeaders: ['Content-Type']
-// }));
+app.use('/portfolio/contact', cors({
+  origin: 'https://makanjuolabolaji.netlify.app/',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 
 // Define your routes here
 app.use('/portfolio', form)
@@ -36,9 +36,9 @@ app.use((req, res, next)=>{
     next(err)
   });
 
-// app.get('/', (req, res) => {
-//   res.send('https://makanjuolabolaji.netlify.app/');
-// });
+app.get('/', (req, res) => {
+  res.send('https://makanjuolabolaji.netlify.app/');
+});
 
 // Start the server
 app.listen(port, () => {
