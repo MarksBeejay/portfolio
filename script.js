@@ -31,79 +31,120 @@ button.addEventListener('click', function () {
 });
 
 
-// Form handling and validation
+// script.js
 
-const form = document.getElementById('contact-form');
+// Remove the previous form handling code
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission
+// Handle the form submission using fetch
+const contactForm = document.getElementById('contact-form');
 
-    // Get form input values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-    // Perform validation
-    let isValid = true;
+  const formData = new FormData(contactForm);
+  const formValues = {};
 
-    if (name.trim() === '') {
-        isValid = false;
-        displayErrorMessage('name', 'Name is required');
+  formData.forEach((value, key) => {
+    formValues[key] = value;
+  });
+
+  try {
+    const response = await fetch('https://portfolio-3j5t.onrender.com/portfolio/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formValues),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message);
+      contactForm.reset();
     } else {
-        removeErrorMessage('name');
+      alert('Oops! Something went wrong.');
     }
-
-    if (email.trim() === '') {
-        isValid = false;
-        displayErrorMessage('email', 'Email is required');
-    } else if (!isValidEmail(email)) {
-        isValid = false;
-        displayErrorMessage('email', 'Invalid email format');
-    } else {
-        removeErrorMessage('email');
-    }
-
-    if (message.trim() === '') {
-        isValid = false;
-        displayErrorMessage('message', 'Message is required');
-    } else {
-        removeErrorMessage('message');
-    }
-
-    // If form is valid, submit data
-    if (isValid) {
-        // Perform form submission or AJAX request here
-        alert('Thank you for your message!')
-        console.log('Form submitted successfully');
-        form.reset(); // Reset form fields
-    }
+  } catch (error) {
+    console.error(error);
+    alert('Oops! Something went wrong.');
+  }
 });
 
-function displayErrorMessage(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    const errorElement = document.createElement('p');
-    errorElement.className = 'error-message';
-    errorElement.textContent = message;
 
-    const parentElement = field.parentElement;
-    parentElement.appendChild(errorElement);
-}
+// Form handling and validation
 
-function removeErrorMessage(fieldId) {
-    const field = document.getElementById(fieldId);
-    const parentElement = field.parentElement;
-    const errorElement = parentElement.querySelector('.error-message');
+// const form = document.getElementById('contact-form');
 
-    if (errorElement) {
-        parentElement.removeChild(errorElement);
-    }
-}
+// form.addEventListener('submit', function (event) {
+//     event.preventDefault(); // Prevent default form submission
 
-function isValidEmail(email) {
-    // Basic email format validation using a regular expression
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
+//     // Get form input values
+//     const name = document.getElementById('name').value;
+//     const email = document.getElementById('email').value;
+//     const message = document.getElementById('message').value;
+
+//     // Perform validation
+//     let isValid = true;
+
+//     if (name.trim() === '') {
+//         isValid = false;
+//         displayErrorMessage('name', 'Name is required');
+//     } else {
+//         removeErrorMessage('name');
+//     }
+
+//     if (email.trim() === '') {
+//         isValid = false;
+//         displayErrorMessage('email', 'Email is required');
+//     } else if (!isValidEmail(email)) {
+//         isValid = false;
+//         displayErrorMessage('email', 'Invalid email format');
+//     } else {
+//         removeErrorMessage('email');
+//     }
+
+//     if (message.trim() === '') {
+//         isValid = false;
+//         displayErrorMessage('message', 'Message is required');
+//     } else {
+//         removeErrorMessage('message');
+//     }
+
+//     // If form is valid, submit data
+//     if (isValid) {
+//         // Perform form submission or AJAX request here
+//         alert('Thank you for your message!')
+//         console.log('Form submitted successfully');
+//         form.reset(); // Reset form fields
+//     }
+// });
+
+// function displayErrorMessage(fieldId, message) {
+//     const field = document.getElementById(fieldId);
+//     const errorElement = document.createElement('p');
+//     errorElement.className = 'error-message';
+//     errorElement.textContent = message;
+
+//     const parentElement = field.parentElement;
+//     parentElement.appendChild(errorElement);
+// }
+
+// function removeErrorMessage(fieldId) {
+//     const field = document.getElementById(fieldId);
+//     const parentElement = field.parentElement;
+//     const errorElement = parentElement.querySelector('.error-message');
+
+//     if (errorElement) {
+//         parentElement.removeChild(errorElement);
+//     }
+// }
+
+// function isValidEmail(email) {
+//     // Basic email format validation using a regular expression
+//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     return emailPattern.test(email);
+// }
 
 
 // document.addEventListener("DOMContentLoaded", function () {
