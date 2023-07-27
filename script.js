@@ -31,48 +31,6 @@ button.addEventListener('click', function () {
 });
 
 
-// script.js
-
-// Remove the previous form handling code
-
-// Handle the form submission using fetch
-// const contactForm = document.getElementById('contact-form');
-
-// contactForm.addEventListener('submit', async (event) => {
-//   event.preventDefault();
-
-//   const formData = new FormData(contactForm);
-//   const formValues = {};
-
-//   formData.forEach((value, key) => {
-//     formValues[key] = value;
-//   });
-
-//   try {
-//     const apiUrl = "https://portfolio-3j5t.onrender.com";
-//     const response = await fetch(`${apiUrl}/portfolio/contact`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(formValues),
-//     });
-
-//     const data = await response.json();
-
-//     if (response.ok) {
-//       alert(data.message);
-//       contactForm.reset();
-//     } else {
-//       alert('Oops! Something went wrong.');
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     alert('Oops! Something went wrong.');
-//   }
-// });
-
-
 // Form handling and validation
 
 // const form = document.getElementById('contact-form');
@@ -148,33 +106,71 @@ button.addEventListener('click', function () {
 // }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const contactForm = document.getElementById("contact-form");
+// document.addEventListener("DOMContentLoaded", function () {
+//     const contactForm = document.getElementById("contact-form");
 
-    contactForm.addEventListener("contact-form", function (event) {
-      event.preventDefault();
+//     contactForm.addEventListener("contact-form", function (event) {
+//       event.preventDefault();
 
-      const formData = new FormData(contactForm);
-      const data = Object.fromEntries(formData.entries());
+//       const formData = new FormData(contactForm);
+//       const data = Object.fromEntries(formData.entries());
 
-      // Update the API endpoint URL
-      const apiUrl = "https://portfolio-3j5t.onrender.com";
+//       // Update the API endpoint URL
+//       const apiUrl = "https://portfolio-3j5t.onrender.com";
 
-      fetch(`${apiUrl}/portfolio/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.text())
-        .then((message) => {
-          alert(message || 'Thank you for you message');
-          contactForm.reset();
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("An error occurred while sending the message.");
-        });
-    });
+//       fetch(`${apiUrl}/portfolio/contact`, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(data),
+//       })
+//         .then((response) => response.text())
+//         .then((message) => {
+//           alert(message || 'Thank you for you message');
+//           contactForm.reset();
+//         })
+//         .catch((error) => {
+//           console.error(error);
+//           alert("An error occurred while sending the message.");
+//         });
+//     });
+//   });
+
+
+// Handle the form submission using fetch
+const contactForm = document.getElementById('contact-form');
+
+contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(contactForm);
+  const formValues = {};
+
+  formData.forEach((value, key) => {
+    formValues[key] = value;
   });
+
+  try {
+    const apiUrl = "https://portfolio-3j5t.onrender.com";
+    const response = await fetch(`${apiUrl}/portfolio/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formValues),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message);
+      contactForm.reset();
+    } else {
+      alert('Oops! Something went wrong.');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Oops! Something went wrong.');
+  }
+});
