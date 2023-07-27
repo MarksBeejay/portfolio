@@ -20,11 +20,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use('/portfolio/contact', cors({
-  origin: 'https://makanjuolabolaji.netlify.app/',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
-}));
+// app.use('/portfolio/contact', cors({
+//   origin: 'https://makanjuolabolaji.netlify.app/',
+//   methods: ['GET', 'POST'],
+//   allowedHeaders: ['Content-Type']
+// }));
+app.use(cors({ origin: 'https://makanjuolabolaji.netlify.app' }));
 
 // Define your routes here
 app.use('/portfolio', form)
