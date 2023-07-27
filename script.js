@@ -171,6 +171,6 @@ contactForm.addEventListener('submit', async (event) => {
     }
   } catch (error) {
     console.error(error);
-    alert('Oops! Something went wrong.');
+    alert('Something went wrong.');
   }
 });
