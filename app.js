@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -8,7 +7,8 @@ const form = require('./src/routes/forms')
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+const mongoDBUrl = process.env.MONGODB_CONNECTION_URL;
+mongoose.connect(mongoDBUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('MongoDB connection error:', error));
 
@@ -16,18 +16,18 @@ const app = express();
 const port = process.env.PORT || 3000;
 
   // Add middleware to parse JSON data
+app.use(cors({ origin: 'https://makanjuolabolaji.netlify.app' }));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use('/portfolio/contact', cors({
-  origin: 'https://makanjuolabolaji.netlify.app',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
-}));
+// app.use('/portfolio/contact', cors({
+//   origin: 'https://makanjuolabolaji.netlify.app',
+//   methods: ['GET', 'POST'],
+//   allowedHeaders: ['Content-Type']
+// }));
 
-// app.use(cors({ origin: 'https://makanjuolabolaji.netlify.app' }));
 
 // Define your routes here
 app.use('/portfolio', form)
@@ -39,9 +39,9 @@ app.use((req, res, next)=>{
     next(err)
   });
 
-app.get('/', (req, res) => {
-  res.send('https://makanjuolabolaji.netlify.app/');
-});
+// app.get('/', (req, res) => {
+//   res.send('https://makanjuolabolaji.netlify.app/');
+// });
 
 // Start the server
 app.listen(port, () => {
